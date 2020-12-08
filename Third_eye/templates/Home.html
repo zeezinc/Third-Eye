@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{{flag}}
+
+<div style="color: red">
+
+{% if messages %}
+
+  {% for sms in messages %}
+        <h2>{{sms}}</h2>
+  {% endfor %}
+
+{% endif %}
+
+</div>
+
+
+<form action="/Responce" enctype="multipart/form-data" method="POST">
+{% csrf_token %}
+    <div class="form-group">
+      <label for="name">First Name:</label>
+      <input type="text" class="form-control" required id="name" placeholder="Full Name" name="fname">
+    </div>
+     <div class="form-group">
+      <label for="name">Last Name:</label>
+      <input type="text" class="form-control" required id="lname" placeholder="Full Name" name="lname">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" required id="email" placeholder="Enter email id" name="email">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="number" class="form-control" required id="phone" placeholder="Enter Phone Number" name="phone">
+    </div>
+    <label>Type of File to be Uploading..?</label>
+    <div class="radio">
+        <label><input type="radio" name="type" value="Image" checked>Image</label>
+    </div>
+    <div class="radio">
+        <label><input checked type="radio" name="type" value="Video">Video</label>
+    </div>
+    <div>
+        Select a file: <input type="file" name="myFile">
+    </div>
+    <div>
+        What Do you Want to Detect?: 
+        <select name="specification">
+          <option value="tripsyDetection">Tripsy</option>
+          <option value="helmet" selected>Helmet</option>
+          <option value="numberPlate">Number Plate</option>
+          <option value="vCount">Count</option>
+        </select>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+
+  {% endblock content %}

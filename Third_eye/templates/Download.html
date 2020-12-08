@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action='/Responce' method='GET'>
+    <div class="form-group">
+      <label for="name">Your Id :</label>
+      <input type="text" class="form-control" id="name" placeholder="Your Id Please!" name="id">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</from>
+
+
+<div>
+{% if user %}
+<h3><pre>
+        Thanks, {{user.name}} <br>
+    {% if user.img %}
+        File Path is : {{user.img}}<br>
+        You uploaded Video is: 
+        <img src="{{user.img.url}}" width="320" height="240" alt="img not found">
+    {% else %}
+        File Path is : {{user.vid}}<br>
+        You uploaded Video is:
+        <div align="center">
+          <video width="320" height="240" controls>
+            <source src="{{user.vid.url}}" type="video/mp4">
+
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+    {% endif %}
+        Your Email id is : {{user.email}}<br>
+        Phone No. is : {{user.phone}}<br>
+        Selected type : {{user.typ}}<br> 
+        Selected type : {{user.spec}}<br> 
+
+    <div> 
+      <h4>Output is: </h4>
+      <div style="width:100%">
+
+      {% if user.spec == "numberPlate" %}
+            <div style="float:left; width:400px; height:200px;">
+            <a href="#" class="d-block mb-4 h-100">
+            
+              {% for img in imgs %}
+              <img src="/media/Out/Plates/{{ img }}" class="img-thumbnail" alt="{{ img }}">
+              {% endfor %}
+            </a>
+          </div>
+      {% else %}
+          <div style="float:left; width:400px; height:200px;">
+          Name : {{user.vid}}
+            <video width="320" height="240" controls>
+              <source src="/media/Out/{{user.vid}}" type="video/mp4">
+
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+      {% endif %}
+      
+   
+    </div>
+
+
+    </div>
+
+{% else %}
+
+  <div>
+    <h3>Enter Your Id</h3>
+  </div>
+
+
+{% endif %}
+
+
+</pre></h2>
+</div>
+
+
+{% endblock %}
