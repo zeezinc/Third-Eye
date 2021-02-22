@@ -1,2 +1,2 @@
 # third-eye
-basic python image processing web application
+A python image processing web application for traffic rule violations
